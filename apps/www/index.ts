@@ -1,3 +1,16 @@
-import * as wasm from "@repo/wasm-game-of-life";
+import { Universe } from "@repo/wasm-game-of-life";
 
-wasm.greet("hi2");
+const pre = document.getElementById("game-of-life-canvas");
+if (!pre) {
+  throw new Error("game-of-life-canvas not found");
+}
+const universe = Universe.new();
+const renderLoop = () => {
+  pre.textContent = universe.render();
+  universe.tick();
+
+  requestAnimationFrame(renderLoop);
+};
+requestAnimationFrame(renderLoop);
+// // wasm.greet("ayo");
+// console.log(wasm.Cell.Alive);
