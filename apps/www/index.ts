@@ -81,6 +81,6 @@ const renderLoop = () => {
   requestAnimationFrame(renderLoop);
 };
 
+drawGrid();
+drawCells();
 requestAnimationFrame(renderLoop);
-// // wasm.greet("ayo");
-// console.log(wasm.Cell.Alive);
