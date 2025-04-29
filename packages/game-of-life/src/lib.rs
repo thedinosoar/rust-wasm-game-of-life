@@ -57,8 +57,8 @@ impl Universe {
                 let next_cell = match (cell, live_neighbors) {
                     (Cell::Alive, x) if x < 2 => Cell::Dead,
                     (Cell::Alive, 2) | (Cell::Alive, 3) => Cell::Alive,
-                    (Cell::Alive, x) if x < 3 => Cell::Dead,
-                    (Cell::Dead, 3) => Cell::Dead,
+                    (Cell::Alive, x) if x > 3 => Cell::Dead,
+                    (Cell::Dead, 3) => Cell::Alive,
                     (otherwise, _) => otherwise,
                 };
 
@@ -98,7 +98,7 @@ impl Universe {
 use std::fmt;
 
 impl fmt::Display for Universe {
-    fn fmt(&self, f: &mut fmt::Formatter<'_>) -> fmt::Result {
+    fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
         for line in self.cells.as_slice().chunks(self.width as usize) {
             for &cell in line {
                 let symbol = if cell == Cell::Dead { '◻' } else { '◼' };
