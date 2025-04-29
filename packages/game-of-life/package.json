@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "build": "wasm-pack build",
-    "dev": "nodemon --watch src --ext rs --exec \"pnpm build\""
+    "dev": "nodemon --watch src --ext rs --exec \"pnpm build\"",
+    "test": "wasm-pack test --firefox --headless"
   },
   "devDependencies": {
     "nodemon": "^3.1.10"

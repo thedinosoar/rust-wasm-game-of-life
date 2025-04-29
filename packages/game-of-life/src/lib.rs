@@ -98,19 +98,34 @@ impl Universe {
     pub fn cells(&self) -> *const usize {
         self.cells.as_slice().as_ptr()
     }
+
+    pub fn set_width(&mut self, width: u32) {
+        self.width = width;
+        let size = (width * self.height) as usize;
+
+        self.cells = FixedBitSet::with_capacity(size);
+    }
+
+    pub fn set_height(&mut self, height: u32) {
+        self.height = height;
+        let size = (self.width * height) as usize;
+
+        self.cells = FixedBitSet::with_capacity(size);
+    }
 }
 
-// use std::fmt;
+impl Universe {
+    /// Get the dead and alive values of the entire universe.
+    pub fn get_cells(&self) -> &FixedBitSet {
+        &self.cells
+    }
 
-// impl fmt::Display for Universe {
-//     fn fmt(&self, f: &mut fmt::Formatter) -> fmt::Result {
-//         for line in self.cells.as_slice().chunks(self.width as usize) {
-//             for &cell in line {
-//                 let symbol = if cell == Cell::Dead { '◻' } else { '◼' };
-//                 write!(f, "{}", symbol)?;
-//             }
-//             write!(f, "\n")?;
-//         }
-//         Ok(())
-//     }
-// }
+    /// Set cells to be alive in a universe by passing the row and column
+    /// of each cell as an array.
+    pub fn set_cells(&mut self, cells: &[(u32, u32)]) {
+        for (row, col) in cells.iter().cloned() {
+            let idx = self.get_index(row, col);
+            self.cells.set(idx, true);
+        }
+    }
+}
