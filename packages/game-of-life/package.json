@@ -1,23 +1,14 @@
 {
   "name": "@repo/wasm-game-of-life",
-  "type": "module",
-  "collaborators": [
-    "Keegan McGonigle <31631874+thedinosoar@users.noreply.github.com>"
-  ],
   "version": "0.1.0",
-  "files": [
-    "pkg/wasm_game_of_life_bg.wasm",
-    "pkg/wasm_game_of_life.js",
-    "pkg/wasm_game_of_life_bg.js",
-    "pkg/wasm_game_of_life.d.ts"
-  ],
-  "main": "pkg/wasm_game_of_life.js",
+  "private": true,
+  "main": "pkg",
   "types": "pkg/wasm_game_of_life.d.ts",
-  "sideEffects": [
-    "./pkg/wasm_game_of_life.js",
-    "./pkg/snippets/*"
-  ],
   "scripts": {
-    "build": "wasm-pack build"
+    "build": "wasm-pack build",
+    "dev": "nodemon --watch src --ext rs --exec \"pnpm build\""
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
   }
 }
