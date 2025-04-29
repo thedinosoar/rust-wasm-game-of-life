@@ -1,0 +1,21 @@
+{
+  "name": "@repo/www",
+  "version": "0.1.0",
+  "description": "create an app to consume rust-generated wasm packages",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "build": "vite build",
+    "dev": "vite",
+    "preview": "vite preview"
+  },
+  "author": "thedinosoar",
+  "devDependencies": {
+    "vite": "^6.3.3",
+    "vite-plugin-top-level-await": "^1.5.0",
+    "vite-plugin-wasm": "^3.4.1"
+  },
+  "dependencies": {
+    "@repo/wasm-game-of-life": "workspace:*"
+  }
+}
