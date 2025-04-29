@@ -2,13 +2,22 @@
   "name": "@repo/wasm-game-of-life",
   "version": "0.1.0",
   "private": true,
-  "main": "pkg",
-  "types": "pkg/wasm_game_of_life.d.ts",
+  "type": "module",
   "scripts": {
     "build": "wasm-pack build",
     "dev": "nodemon --watch src --ext rs --exec \"pnpm build\""
   },
   "devDependencies": {
     "nodemon": "^3.1.10"
+  },
+  "exports": {
+    "./wasm": {
+      "types": "./pkg/wasm_game_of_life_bg.wasm.d.ts",
+      "default": "./pkg/wasm_game_of_life_bg.wasm"
+    },
+    ".": {
+      "types": "./pkg/wasm_game_of_life.d.ts",
+      "default": "./pkg/wasm_game_of_life.js"
+    }
   }
 }
